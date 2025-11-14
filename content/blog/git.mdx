@@ -1,10 +1,186 @@
-** Qué es GIT **
-** GIT vs otros gestores de repositorios **
-** ¿Qué es Subversion o SVN? **
-** Conceptos básicos de GITWorkflow de GIT **
-** Para qué se usa **
-** Repositorios (públicos - privados, local - remoto) **
-** Como se usa **
-** Instalación en el SO **
-** Configuraciones Globales **
-** Crear Repositorio **
+---
+title: "GIT"
+date: 2025-10-28
+author: "Axel Leguero"
+---
+# GIT #
+## Clase 1: ##
+
+- Qué es GIT 
+- GIT vs otros gestores de repositorios
+- ¿Qué es Subversion o SVN?
+- Conceptos básicos de GIT
+- Workflow de GIT
+- Para qué se usa
+- Repositorios (públicos - privados, local - remoto)
+- Cómo se usa
+- Instalación en el SO
+- Configuraciones Globales
+- Crear Repositorio
+
+
+# Qué es GIT #
+Es un sistema de control de versiones distribuido. Guarda un repositorio central por cada proyecto y cada participante descarga una copia local del mismo en su dispositivo. 
+Los repositorios permiten tener una linea de tiempo de todo lo que está sucediendo. 
+Ventajas: 
+- Control total de versiones
+- Trabajo en conexión
+- Integración con plataformas como Github
+
+# Git vs otros gestores de repositorios #
+## GitHub ##
+Es una plataforma de alojamiento de código basado en Git, que permite guardar proyectos, colaborar en equipo y hacer control de versiones.
+Entre sus funciones está alojar repositorios públicos y privados; control de versiones con Git; revisar código mediante Pull Requests; Integración con herramientas CI/CD; facilita la colaboración en proyectos Open Source.
+## GitLab ##
+También usa Git, pero ofrece una solución mas integral: Combina el control de versiones con un sistema completo de DevOps.
+Entre sus funciones principales está los repositorios Git; CI/CD integrado; gestión de issues, tareas y flujos de trabajo; seguridad y despliegue automatizado; y puede instalarse en servidores propios.
+## Bitbucket ##
+Funciones principales repositorios Git; Integración fuerte con Jira y Trello; CI/CD con Bitbucket y Pipelines; Control de acceso y permisos avanzados; y soporte para proyectos privados gratuito.
+
+# Que es subversion o SVN #
+Se basa en un sistema de control de versiones centralizado. Existe un almacén central de
+datos (el repositorio) accesible a todos los usuarios. El sistema evita que dos usuarios
+puedan editar un mismo archivo al mismo tiempo.
+
+# Conceptos básicos de GIT #
+Git se basa en snapshots (instantáneas) del código en un estado determinado, que viene dado por el
+autor y la fecha.
+Un Commit es un conjunto de cambios guardados en el repositorio de Git y tiene un identificador SHA1
+único.
+Las ramas (branches) se pueden pensar como una línea de tiempo a partir de los commit. Hay siempre
+como mínimo una rama principal o predefinida 
+
+# Workflow de git #
+con el comando Git add enviamos los cambios a staging, que es un estado intermedio en el que se
+van almacenando los archivos a enviar en el commit. Finalmente con commit lo enviamos al
+repositorio local.
+Si queremos colaborar con otros, con push subimos los archivos a un repo remoto y mediante pull
+podríamos traer los cambios realizados por otros en remoto hacia nuestro directorio de trabajo.
+
+# Para que se usa #
+Compartir código con otras personas.
+Tener un historial de los cambios realizados en el código.
+Git nos permite:
+•Tener un historial de cambios
+•Saber quién los hizo y cuándo
+•Resolver los conflictos que surjan cuando dos o más personas modifiquen el mismo archivo (merge)
+
+# Repositorios #
+•Un repositorio es un espacio, en la nube, que tenemos asignado para poder
+alojar todos los archivos de nuestro proyecto.
+•Un repositorio es el lugar donde van a estar todos los commits que forman
+parte del historial del proyecto.
+
+## Repositorios Locales y Remotos ##
+•GIT trabaja con un repositorio local que está en nuestro equipo, donde
+iremos agregando nuestros commits.
+•También trabaja con uno remoto en el cual podemos subir nuestros commits
+o del cual podemos bajarnos los commits que haya subido alguien.
+
+# Como se usa #
+1. Creamos/borramos/modificamos archivos en una carpeta
+asociada a un repositorio (localmente, en nuestro S.O)
+2. Seleccionamos los archivos que van a ser parte de un commit.
+3. Confirmamos el commit para agregarlo al repositorio.
+4. Subimos los commits de nuestro repositorio local al repositorio
+remoto.
+
+# INSTALACIÓN EN EL SISTEMA OPERATIVO #
+•Para poder utilizar GIT en nuestro equipo necesitamos tener instalado un cliente
+de dicho sistema.
+•El cliente puede tener una interfaz gráfica o puede ser accesible únicamente
+mediante la línea de comandos.
+•“GIT” es un cliente de GIT que nos permite acceder desde la línea de
+comandos de cualquier terminal a las funcionalidades brindadas por dicho
+sistema de versionado.
+•También instala su propia terminal llamada Git Bash.
+•Además, trae un GUI Client muy sencillo y básico.
+El link a su sitio de descargas es:
+https://git-scm.com/downloads
+
+# CONFIGURACIONES GLOBALES #
+Luego de haber instalado algún cliente de GIT en nuestro equipo, debemos realizar
+mínimamente las siguientes dos configuraciones:
+git config --list Esto te permitira ver toda la configuracion de nuestro git por consola
+git config --get user.name Si solo deseamos ver el nombre de usuario configurado
+git config --get user.email Si necesitamos ver el correo configurado
+Para configurar hacemos lo siguiente
+git config --global user.name "TU NOMBRE"
+git config --global user.email "TU DIRECCION DE EMAIL«
+Git config user.password Token
+git config credential.username « TU EMAIL"
+
+# Crear Repositorio #
+Tenemos 2 opciones
+• Si ya tenemos inicializado un repo con git init solo debemos agregar el origen
+del repo remoto y pushearlo
+git remote add origin https://github.com/maxdebian/bootcamp4.git
+git branch -M main
+git push -u origin main
+• Si no tenemos creado nada y creamos solo el repo web ahí deberemos
+hacer todos los pasos siguientes
+echo "# gym2" >> README.md
+git init git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/maxdebian/gym2.git
+git push -u origin main
+
+## Clase 2 ##
+
+- Comandos básicos
+
+## Comandos básicos ##
+### git clone ###
+git clone url_repositorio_remoto
+•Permite clonarnos un repositorio remoto.
+•En el caso de que el repositorio sea privado, debemos tener el correspondiente
+acceso y permiso para descargarlo (debemos tener el rol de “propietario” o
+formar parte de los “colaboradores”).
+### git status ###
+•Debe ejecutarse en una terminal situados en la raíz de un repositorio clonado
+(o descargado).
+•Permite saber si se realizaron cambios sobre archivos que aún no fueron
+commiteados.
+### git add ###
+git add filename
+•Debe ejecutarse en una terminal situados en la raíz de un repositorio clonado (o
+descargado).
+•Permite agregar uno o varios archivos al área de staging(repositorio local), para que
+luego éstos sean commiteados(en un mismo commit) y subidos al repositorio remoto.
+git add .
+### git commit ###
+git commit –m ‘mensaje’
+•Debe ejecutarse en una terminal situados en la raíz de un repositorio clonado
+(o descargado).
+•Permite armar y guardar un commit con los archivos que se encuentran en el
+área de staging(los que previamente fueron agregados con gitadd).
+•Debe considerarse que un commit es un “punto de cambio del proyecto”,
+situado cronológicamente.
+### git push ###
+git push remote branch
+•Debe ejecutarse en una terminal situados en la raíz de un repositorio clonado
+(o descargado).
+•Permite subir los commits realizados en nuestro repositorio local al repositorio
+remoto para que éstos puedan ser descargados por el resto del equipo de
+trabajo.
+### git pull ###
+•Debe ejecutarse en una terminal situados en la raíz de un repositorio clonado
+(o descargado).
+•Permite descargar los cambios (commits) desde el repositorio remoto y
+actualizar al instante el repositorio local para reflejar ese contenido.
+### git log ###
+git log
+Este comando nos permite ver el histórico de commits, estando situados en la carpeta de
+nuestro proyecto. Esto puede dar un listado muy largo con lo cual podemos pasar linea a
+línea con enter o con las teclas “CTRL + z”
+De un commit podemos ver diversas informaciones básicas como:
+- Identificador del commit
+- Autor
+- Fecha de realización
+- Mensaje enviado
+Es muy útil lanzar el log en una sola línea, lo que permite que veamos más
+cantidad de commits en la pantalla y facilita mucho seguir la secuencia, en vez
+de tener que ver un montón de páginas de commits.
+Para ello usamos el mismo comando, pero con la opción "--oneline":
+git log –oneline
