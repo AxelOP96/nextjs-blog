@@ -184,3 +184,116 @@ cantidad de commits en la pantalla y facilita mucho seguir la secuencia, en vez
 de tener que ver un montón de páginas de commits.
 Para ello usamos el mismo comando, pero con la opción "--oneline":
 git log –oneline
+
+## Clase 3 ##
+
+Comandos básicos
+![Comandos Basicos](../../../img/git-comandos.png)
+
+### Git log ###
+ Si hacemos un git checkout HASH
+ git checkout 7a9b2c3
+ Esto mueve nuestro HEAD a apuntar a ese commit específico, fuera de cualquier rama. Esto se llama “detached HEAD state”.
+ En este estado: Podemos revisar el proyecto tal como estaba en ese commit.
+ Puedes ejecutar o compilar para verificar algo.
+ Pero si haces commits en este estado, esos commits no estarán asociados a ninguna rama, y podrías perderlos si cambias de rama 
+sin guardarlos.
+ Git incluso te avisa con un mensaje como:
+ You are in 'detached HEAD' state. You can look around, make experimental changes...
+ Para dejar el HEAD estable (volver a una rama)
+ git checkout main
+ Esto vuelve tu HEAD al último commit de esa rama y restablece el estado normal.
+ Si queremos conservar los cambios:
+ Crea una nueva rama desde ese commit antes de salir:
+ git checkout -b fix-temporal 
+Así esos cambios quedan guardados en una rama nueva, y luego podés fusionarla más tarde.
+ Si olvidaste volver a una rama y hiciste commits en “detached HEAD”:
+ Podés recuperarlos:
+ git branch rescue-branch hash_del_commit_que_hiciste
+De esa forma no se pierden
+
+### Descarte de cambios no commiteados ###
+ Puede darse el caso que interese descartar cambios que hayamos realizado sobre ciertos 
+archivos (o sobre uno en particular).
+ Existen al menos tres formas de descartar cambios no commiteados
+ 1. Descartar cambios sobre un archivo en particular, sin guardarlos.
+ 2. Descartar todos los cambios, sin guardarlos.
+ 3. Descartar todos los cambios, guardándolos.
+
+### GIT CHECKOUT ###
+ Git checkout path
+ • Permite descartar los cambios no commiteados sobre un archivo en particular, sin guardarlos.
+ • Descarta los cambios sobre el archivo y mueve su versión a la que esté en el último commit del 
+repositorio.
+ Git checkout . 
+Descarta todos los cambios no commiteados.
+
+### GIT RESET ###
+ Git reset --hard
+ •Permite descartar todos los cambios no commiteados , sin guardarlos.
+ • Mientras que el comando “ checkout ” descarta los cambios de un archivo en particular, “ reset 
+” puede descartar masivamente.
+ • Este comando, en realidad, reestablece todos nuestros archivos al último commit descargado 
+desde el repositorio remoto.
+
+### GIT STASH ###
+ • Permite descartar todos los cambios no commiteados , guardándolos para poder recuperarlos 
+en un futuro.
+ • Mientras que el comando “ reset ” descarta los cambios definitivamente, “ stash ” los guarda 
+para que podamos recuperarlos.
+
+### RECUPERAR CAMBIOS DESCARTADOS ###
+ Si descartamos cambios y los hemos guardado ( git stash ), entonces estamos en condiciones de 
+poder recuperarlos.
+ Para poder hacer esto, es necesario conocer los siguientes comandos
+
+ ### GIT STASH LIST – GIT STASH SHOW – GIT STASH APPLY ###
+ Git stash list
+ • Permite listar todos los “puntos de restauración” que hemos generado al utilizar el comando “ 
+stash ” para descartar los cambios y guardarlos.
+ • Git guarda todos los cambios descartados en una pila, donde el índice 0 (cero) contiene los 
+últimos cambios descartados.
+ Git stash show -p “stash name”
+ • Permite ver los cambios que se encuentran guardados en un stash en particular.
+ Git stash apply “stash name”
+ • Permite recuperar los cambios desde un stash en particular.
+ • Por más que hayamos recuperado los cambios de un stash en particular, git no borrará el 
+punto de restauración de la pila de cambios stasheados
+ Luego de recuperar cambios stasheados , git no borrará el “punto de restauración”.
+ • Para poder borrar, de forma definitiva, un punto de restauración debemos hacer uso del 
+comando “ stash drop
+
+### GIT STASH DROP ###
+ Git stash drop stash-name
+ • Permite eliminar un “punto de restauración” de forma definitiva.
+ • Luego de ser ejecutado, la pila de cambios stasheados se reordenará.
+ • Advertencia : este comando no solicita confirmación para poder ejecutarse.
+
+### CONFLICTOS (merges) ###
+ • Puede darse el caso de que estemos trabajando sobre mismo archivo en el cual que está 
+trabajando otra persona.
+ • Si la otra persona sube el cambio (“ pushea ”) antes que nosotros, cuando intentemos descargar 
+las cosas desde el repositorio remoto (“ pullear ”) se nos generará un conflicto (“ merge)
+ • Un merge se genera cuando dos o más commits contienen cambios sobre los mismos archivos, 
+sobre las mismas líneas de código
+
+• Para resolver un conflicto, es necesario quedarnos con la “porción” de código que nos interese.
+ • Para ello debemos:
+ • Borrar totalmente las sentencias propias y quedarnos con las sentencias del commit entrante.
+ • Borrar totalmente las sentencias del commit entrante y quedarnos con las propias.
+ • Hacer una combinación de sentencias (propias y entrantes)
+ 
+ ![Lineas que indican conflicto](./img/git-conflicto.png)
+ Luego de solucionar el merge , debemos commitear y pushear los cambios para que todo el 
+equipo pueda visualizar el archivo actualizado.
+
+### Git checkout ###
+ Se puede regresar a commit anteriores mediante el hash del log y el checkout 
+Git checkout HASH que queremos regresar
+ Esto lo lleva de nuevo a la rama maestra. A menos que quieras trabajar con algunas funciones 
+más avanzadas de Git, es mejor no realizar ningún cambio en tu proyecto cuando hayas 
+revisado un commit anterior. Sin embargo, si eres el único que trabaja
+ en un proyecto y quieres descartar todos los commit recientes y volver a un estado anterior, puede 
+restablecer el proyecto a un
+ commit anterior. Trabajando desde la rama maestra, ingrese lo siguiente:
+ Git reset –hard hashLog
